@@ -74,11 +74,11 @@ export const TopBar = () => {
       <div className="navbar-end gap-6 text-2xl">
         <Link
           href="/sign-in"
-          className="btn rounded-full btn-primary btn-lg btn-outline border-none"
+          className="btn rounded-full btn-primary btn-outline border-none"
         >
           Login
         </Link>
-        <Link href="/sign-up" className="btn rounded-full btn-lg btn-primary">
+        <Link href="/sign-up" className="btn rounded-full  btn-primary">
           Sign Up
         </Link>
       </div>

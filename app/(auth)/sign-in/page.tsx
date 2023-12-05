@@ -22,7 +22,7 @@ export default function SignIn() {
           className="input input-bordered"
           name="password"
           type="password"
-          placeholder="*****8"
+          placeholder="******"
         />
         <Link className="text-primary" href={"/forgot-password"}>
           Forgot password?
