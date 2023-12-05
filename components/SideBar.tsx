@@ -11,18 +11,15 @@ export const SideBar = () => {
   const pathName = usePathname()
     return <aside className="flex flex-col h-[90vh] justify-between">
       <div className="flex flex-col">
-        {pathName}
     {navs.map((nav, i) => (
         <Link className="btn btn-ghost justify-start " href={nav.href} key={i}>
           {createElement(
             "i",
             {
               style: {
-                stroke: new RegExp(`^(${nav.href})(/)?$`).test(
-                  pathName
-                )
-                  ? "green"
-                  : "red",
+                stroke: nav.href === pathName
+                  ? ""
+                  : "",
               },
             },
             nav.icon
