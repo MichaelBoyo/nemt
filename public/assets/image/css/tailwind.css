@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.align-logo {
+  @apply pl-5 md:pl-8 lg:pl-8 pt-4;
+}
+.applyFlexBetween {
+  margin: 0 auto;
+  @apply flex justify-between items-center lg:w-11/12 p-4;
+}
+.applyJustFlex {
+  margin: 0 auto;
+  @apply flex justify-between items-center px-10 py-4;
+}
+.applyFlexCenter {
+  @apply flex justify-center items-center;
+}
+.applyFlexCenterWithHeight {
+  @apply flex justify-center items-center h-5/6;
+}
+.hidItem{
+  @apply md:block hidden
+}
+.step {
+  @apply items-center justify-center md:my-64 my-24 flex flex-col md:w-auto m-auto;
+}
+.step-card {
+  @apply items-center justify-center flex flex-col md:w-auto m-auto;
+}
+.textField{
+  @apply md:w-[464px] w-10/12
+}
+
