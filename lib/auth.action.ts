@@ -1,8 +1,10 @@
 "use server";
+import { FormState } from "~/types/form.state";
+
 const baseUrl = process.env.API_URL;
 export const signIn = async (email: string, password: string) => {
   try {
-    const res = await fetch(`${baseUrl}/`, {
+    const res = await fetch(`${baseUrl}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +20,7 @@ export const signIn = async (email: string, password: string) => {
   }
 };
 
-export const signUp = async (formData: FormData) => {
+export const signUp = async (_: FormState, formData: FormData) => {
   try {
     const res = await fetch(`${baseUrl}/users/create`, {
       method: "POST",
@@ -31,30 +33,11 @@ export const signUp = async (formData: FormData) => {
         password: formData.get("password"),
       }),
     });
-    const data = await res.json();
-    console.log(data);
 
-    return data;
-    // Do something
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const verifyEmail = async (email: string, otp: string) => {
-  try {
-    const res = await fetch(`${baseUrl}users/verify`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, otp }),
-    });
     const data = await res.json();
 
-    return data;
-    // Do something
+    return { data };
   } catch (error) {
-    throw error;
+    return { error: "error in catch" };
   }
 };

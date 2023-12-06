@@ -1,53 +1,57 @@
-import type { AuthOptions } from "next-auth";
+import { NextAuthOptions, getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { signIn } from "./auth.action";
+import { baseUrl } from ".";
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
-      // `credentials` is used to generate a form on the sign in page.
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
+
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
+        const res = await fetch(`${baseUrl}/users/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: credentials?.email,
+            password: credentials?.password,
+          }),
+        });
+        const data = await res.json();
 
-        const data = await signIn(
-          credentials?.username!,
-          credentials?.password!
-        );
-
-        console.log(data);
-
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user;
+        if (data) {
+          return {
+            ...data,
+            ...data.data,
+          };
         } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          return null;
-
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+          throw new Error("Invalid credentials");
         }
       },
     }),
   ],
 
+  session: { strategy: "jwt" },
+  pages: {
+    signIn: "/sign-in",
+  },
   callbacks: {
-    async session({ session, user }) {
-      return Promise.resolve({
-        ...session,
-        user: {
-          ...session.user,
-          id: user.id,
-        },
-      });
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === "update") {
+        return { ...token, ...session.user };
+      }
+      return { ...token, ...user };
+    },
+    async session({ session, token, user }) {
+      session.user = token as any;
+      return session;
     },
   },
 };
+
+export const getServerAuthSession = () => getServerSession(authOptions);
