@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { redirect } from "next/navigation";
-
+// @ts-ignore
 import { MuiOtpInput } from "mui-one-time-password-input";
 import { baseUrl } from "~/lib";
 export default function VeriifyEmail({ searchParams }: { searchParams: any }) {

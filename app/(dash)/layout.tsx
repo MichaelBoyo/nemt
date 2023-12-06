@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import { NavBar } from "~/components/Navbar";
 import { SideBar } from "~/components/SideBar";
+import { Modals } from "~/components/modals";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ const App = async ({ children }: { children: React.ReactNode }) => {
       <body className={inter.className}>
         <NavBar />
         <main className="flex w-screen">
+          <Modals />
           <SideBar />
           {children}
         </main>

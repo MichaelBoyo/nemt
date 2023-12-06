@@ -1,3 +1,5 @@
+import { InviteDriverButton } from "~/components/actionButtons/InviteDriverButton";
+import { InviteDrriver } from "~/components/forms/InviteDrriver";
 import { getServerAuthSession } from "~/lib/authoptions";
 
 export default async function Home() {
@@ -5,7 +7,6 @@ export default async function Home() {
 
   return (
     <div className="grow p-6">
-      {JSON.stringify(session)}
       <div className="card bg-primary w-full text-white">
         <div className="card-body">
           <h1 className="card-title">Passengers satisfaction</h1>
@@ -15,6 +16,8 @@ export default async function Home() {
           </p>
         </div>
       </div>
+      <InviteDrriver />
+      <InviteDriverButton />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { signUp } from "~/lib/auth.action";
 import { useFormState } from "react-dom";
 
 export default function SignUp() {
+  // @ts-ignore
   const [formState, formAction] = useFormState(signUp, {
     error: undefined,
     data: undefined,
