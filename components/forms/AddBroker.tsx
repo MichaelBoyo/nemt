@@ -9,20 +9,23 @@ export const AddBroker = () => {
   const [formState, formAction] = useFormState(inviteBroker, {
     data: undefined,
     message: undefined,
+    ok: undefined,
   });
   useEffect(() => {
-    console.log({ formState });
-  }, [formState]);
+    if (formState.ok) {
+      setOpen(false);
+    }
+  }, [formState, setOpen]);
 
   return (
     <Modal open={open} close={() => setOpen(false)}>
       <form action={formAction} className="flex flex-col gap-2 w-full ">
-        <label className="font-semibold">Driver Email</label>
+        <label className="font-semibold">Add Broker</label>
         <input
           className="input input-bordered"
           placeholder="broker name"
           name="brokerName"
-          type="email"
+          type="text"
           required
         />
         {formState.message && (

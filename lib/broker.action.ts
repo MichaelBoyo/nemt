@@ -1,4 +1,5 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import { baseUrl } from ".";
 import { getServerAuthSession } from "./authoptions";
 
@@ -18,7 +19,9 @@ export const inviteBroker = async (_: any, formData: FormData) => {
       body: JSON.stringify({ brokerName, providerEmail }),
     });
     if (res.ok) {
-      return await res.json();
+      return {
+        ok: true,
+      };
     } else if (res.status === 400) {
       return await res.json();
     } else {
@@ -28,5 +31,7 @@ export const inviteBroker = async (_: any, formData: FormData) => {
   } catch (error) {
     console.log(error);
     return { error: "wahala" };
+  } finally {
+    revalidatePath("/brokers");
   }
 };

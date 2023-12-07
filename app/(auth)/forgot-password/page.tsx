@@ -1,5 +1,4 @@
 import { Submit } from "~/components/Submit";
-import { signUp } from "~/lib/auth.action";
 
 export default function ForgotPassword() {
   return (
@@ -9,7 +8,7 @@ export default function ForgotPassword() {
         Get ready to enjoy all the features and benefits we have to offer. It
         iss quick, easy, and free!
       </p>
-      <form className="flex flex-col  gap-4  " action={signUp}>
+      <form className="flex flex-col  gap-4  ">
         <input
           className="input input-bordered"
           name="email"

@@ -1,8 +1,9 @@
 import { getServerAuthSession } from "~/lib/authoptions";
 import { baseUrl } from "~/lib";
 import { redirect } from "next/navigation";
-import { DriversTable } from "~/components/tables/DriverTable";
 import { Pagination } from "~/components/Pagination";
+import { BrokersTable } from "~/components/tables/BrokerTable";
+import { AddBrokerButton } from "~/components/actionButtons/AddBrokerButton";
 export default async function Brokers({ searchParams }: { searchParams: any }) {
   const session = await getServerAuthSession();
   const page = searchParams?.page || 0;
@@ -19,15 +20,18 @@ export default async function Brokers({ searchParams }: { searchParams: any }) {
   const data = await res.json();
   return (
     <div className="flex flex-col rounded-lg  grow m-5 p-5  gap-4 ">
-      <div className="stats shadow w-max ">
-        <div className="stat">
-          <div className="stat-title">Total Drivers</div>
-          <div className="stat-value">{data?.length}</div>
-          <div className="stat-desc">21% more than last month</div>
+      <div className="flex items-center gap-10">
+        <div className="stats shadow w-max ">
+          <div className="stat ">
+            <div className="stat-title">Total Brokers</div>
+            <div className="stat-value">{data?.length}</div>
+            <div className="stat-desc">21% more than last month</div>
+            <AddBrokerButton />
+          </div>
         </div>
       </div>
 
-      <DriversTable drivers={data} />
+      <BrokersTable brokers={data} />
       <Pagination />
     </div>
   );
