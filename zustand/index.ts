@@ -10,11 +10,16 @@ export const useBearStore = create<BearState>()((set) => ({
   increase: (by) => set((state) => ({ bears: state.bears + by })),
 }));
 
-interface InviteDriver {
+interface ModalProp {
   open: boolean;
   setOpen: (open: boolean) => void;
 }
-export const useInviteDriverStore = create<InviteDriver>((set) => ({
-  open: true,
+export const useInviteDriverStore = create<ModalProp>((set) => ({
+  open: false,
+  setOpen: (open) => set({ open }),
+}));
+
+export const useInviteBrokerStore = create<ModalProp>((set) => ({
+  open: false,
   setOpen: (open) => set({ open }),
 }));

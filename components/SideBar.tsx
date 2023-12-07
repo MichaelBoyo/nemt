@@ -61,4 +61,5 @@ const navs = [
   { name: "History", icon: <HIstoryIcon />, href: "/history" },
   { name: "Settings", icon: <SettingsIcon />, href: "/settings" },
   { name: "Drivers", icon: <SettingsIcon />, href: "/drivers" },
+  { name: "Brokers", icon: <SettingsIcon />, href: "/brokers" },
 ];

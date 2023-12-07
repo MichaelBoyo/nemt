@@ -3,17 +3,16 @@ import { baseUrl } from "~/lib";
 import { redirect } from "next/navigation";
 import { DriversTable } from "~/components/tables/DriverTable";
 import { Pagination } from "~/components/Pagination";
-export default async function Drivers() {
+export default async function Brokers({ searchParams }: { searchParams: any }) {
   const session = await getServerAuthSession();
-  const res = await fetch(
-    `${baseUrl}/profile/providers/drivers?email=${session?.user.email}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + session?.user.access_token,
-      },
-    }
-  );
+  const page = searchParams?.page || 0;
+  const size = searchParams?.size || 10;
+  const res = await fetch(`${baseUrl}/brokers/all?page=${page}&size=${size}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + session?.user.access_token,
+    },
+  });
   if (!res.ok) {
     return redirect("/sign-in");
   }

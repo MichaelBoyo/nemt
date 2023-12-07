@@ -15,7 +15,6 @@ export default function Modal({
   handleSubmit?: () => void;
 }) {
   const cancelButtonRef = useRef(null);
-  console.log("open in modal", open);
 
   return (
     <Transition.Root show={open} as={Fragment}>
