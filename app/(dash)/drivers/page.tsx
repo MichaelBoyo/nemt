@@ -3,6 +3,7 @@ import { baseUrl } from "~/lib";
 import { redirect } from "next/navigation";
 import { DriversTable } from "~/components/tables/DriverTable";
 import { Pagination } from "~/components/Pagination";
+import { Metadata } from "next";
 export default async function Drivers() {
   const session = await getServerAuthSession();
   const res = await fetch(
@@ -33,3 +34,8 @@ export default async function Drivers() {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Qwip  | Drivers",
+  description: "Non Emergency Medical transport",
+};

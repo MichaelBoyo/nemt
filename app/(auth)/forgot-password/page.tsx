@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Submit } from "~/components/Submit";
 
 export default function ForgotPassword() {
@@ -21,3 +22,8 @@ export default function ForgotPassword() {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Qwip  | Forgot Password",
+  description: "Non Emergency Medical transport",
+};

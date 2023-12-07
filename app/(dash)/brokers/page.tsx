@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { Pagination } from "~/components/Pagination";
 import { BrokersTable } from "~/components/tables/BrokerTable";
 import { AddBrokerButton } from "~/components/actionButtons/AddBrokerButton";
+import { Metadata } from "next";
 export default async function Brokers({ searchParams }: { searchParams: any }) {
   const session = await getServerAuthSession();
   const page = searchParams?.page || 0;
@@ -36,3 +37,8 @@ export default async function Brokers({ searchParams }: { searchParams: any }) {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Qwip  | Brokers",
+  description: "Non Emergency Medical transport",
+};
