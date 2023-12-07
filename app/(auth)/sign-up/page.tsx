@@ -4,7 +4,6 @@ import { Submit } from "~/components/Submit";
 import { redirect } from "next/navigation";
 import { signUp } from "~/lib/auth.action";
 import { useFormState } from "react-dom";
-import { Metadata } from "next";
 
 export default function SignUp() {
   // @ts-ignore
@@ -50,8 +49,3 @@ export default function SignUp() {
     </div>
   );
 }
-
-export const metadata: Metadata = {
-  title: "Qwip  | SignUp",
-  description: "Non Emergency Medical transport",
-};
