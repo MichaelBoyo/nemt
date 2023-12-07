@@ -1,8 +1,14 @@
+"use client";
 import type { Driver } from "~/types/driver.type";
 import { User } from "react-feather";
+import { useRouter } from "next/navigation";
 export const DriverRow = async ({ driver }: { driver: Driver }) => {
+  const router = useRouter();
   return (
-    <tr className="hover:bg-info">
+    <tr
+      onClick={() => router.push(`/drivers/${driver.driverEmail}`)}
+      className="hover:bg-info cursor-pointer"
+    >
       <th>
         <label>
           <input type="checkbox" className="checkbox" />
