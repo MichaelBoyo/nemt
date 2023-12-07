@@ -2,10 +2,10 @@
 import { useState } from "react";
 import { Submit } from "~/components/Submit";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
+import { Metadata } from "next";
 
 export default function SignIn() {
   const [payload, setPayload] = useState({
@@ -84,3 +84,8 @@ export default function SignIn() {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Qwip  | Sign In",
+  description: "Non Emergency Medical transport",
+};
