@@ -17,7 +17,7 @@ const App = async ({ children }: { children: React.ReactNode }) => {
     <html data-theme="nemt" lang="en">
       <body className={inter.className}>
         <NavBar />
-        <main className="flex w-screen">
+        <main className="flex w-screen bg-info ">
           <Modals />
           <SideBar />
           {children}

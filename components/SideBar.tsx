@@ -10,12 +10,12 @@ import { usePathname } from "next/navigation";
 export const SideBar = () => {
   const pathName = usePathname();
   return (
-    <aside className="flex flex-col h-[90vh] px-4 justify-between">
+    <aside className="flex bg-base-100 flex-col h-[90vh]  justify-between">
       <div className="flex flex-col">
         {navs.map((nav, i) => (
           <Link
             className={`${
-              nav.href === pathName ? "bg-info border border-primary" : ""
+              nav.href === pathName ? "bg-info border rounded-none" : ""
             } btn btn-ghost justify-start hover:bg-info  `}
             href={nav.href}
             key={i}
@@ -60,4 +60,5 @@ const navs = [
   { name: "Trips", icon: <TripsIcon />, href: "/trips" },
   { name: "History", icon: <HIstoryIcon />, href: "/history" },
   { name: "Settings", icon: <SettingsIcon />, href: "/settings" },
+  { name: "Drivers", icon: <SettingsIcon />, href: "/drivers" },
 ];
