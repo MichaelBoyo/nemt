@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import { InviteDrriver } from "./forms/InviteDrriver";
+import { InviteDriver } from "./forms/InviteDrriver";
 
 export const Modals = () => {
   return (
     <>
-      <InviteDrriver />
+      <InviteDriver />
     </>
   );
 };

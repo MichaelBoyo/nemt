@@ -11,9 +11,12 @@ export const signIn = async (email: string, password: string) => {
       },
       body: JSON.stringify({ email, password }),
     });
-    const data = await res.json();
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
+    throw new Error("Invalid username or password");
 
-    return data;
     // Do something
   } catch (error) {
     throw error;

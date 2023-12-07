@@ -22,13 +22,14 @@ export const authOptions: NextAuthOptions = {
             password: credentials?.password,
           }),
         });
-        const data = await res.json();
-
-        if (data) {
-          return {
-            ...data,
-            ...data.data,
-          };
+        if (res.ok) {
+          const data = await res.json();
+          if (data) {
+            return {
+              ...data,
+              ...data.data,
+            };
+          }
         } else {
           throw new Error("Invalid credentials");
         }

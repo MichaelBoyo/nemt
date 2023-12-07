@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 
 export default function SignIn() {
   const [payload, setPayload] = useState({
@@ -12,6 +13,8 @@ export default function SignIn() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [type, setType] = useState("password");
   const router = useRouter();
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -22,8 +25,10 @@ export default function SignIn() {
         redirect: false,
         ...payload,
       });
+      console.log("result", result);
 
-      if (!result?.error) {
+      if (result?.error) {
+        setErrorMessage(result.error);
         // toast.error("Something went wrong, please check your credentials and try again");
       } else {
         router.push("/dash");
@@ -51,18 +56,30 @@ export default function SignIn() {
           value={payload.email}
           onChange={(e) => setPayload({ ...payload, email: e.target.value })}
         />
-        <input
-          className="input input-bordered"
-          name="password"
-          type="password"
-          placeholder="******"
-          value={payload.password}
-          onChange={(e) => setPayload({ ...payload, password: e.target.value })}
-        />
+        <div className="relative w-full">
+          <input
+            className="input input-bordered w-full"
+            name="password"
+            type={type}
+            placeholder="******"
+            value={payload.password}
+            onChange={(e) =>
+              setPayload({ ...payload, password: e.target.value })
+            }
+          />
+          <button
+            type="button"
+            onClick={() => setType(type === "password" ? "text" : "password")}
+            className="absolute right-2 top-4 "
+          >
+            {type === "password" ? <FaRegEye /> : <FaRegEyeSlash />}
+          </button>
+        </div>
         <Link className="text-primary" href={"/forgot-password"}>
           Forgot password?
         </Link>
         <Submit loading={loading}>Sign In</Submit>
+        <p className="text-center text-error">{errorMessage}</p>
       </form>
     </div>
   );
