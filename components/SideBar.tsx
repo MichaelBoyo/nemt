@@ -42,7 +42,7 @@ export const SideBar = () => {
           </Link>
         ))}
       </div>
-      <button className="btn btn-primary btn-outline rounded-full ">
+      <button className="btn mx-4 btn-primary btn-outline rounded-full ">
         <Image
           src="/assets/icon/invite-person.svg"
           width="20"
