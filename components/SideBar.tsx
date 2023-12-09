@@ -15,7 +15,9 @@ export const SideBar = () => {
         {navs.map((nav, i) => (
           <Link
             className={`${
-              nav.href === pathName ? "bg-info border rounded-none" : ""
+              nav.href === pathName || pathName.includes(nav.href)
+                ? "bg-info border rounded-none"
+                : ""
             } btn btn-ghost justify-start hover:bg-info  `}
             href={nav.href}
             key={i}
@@ -32,7 +34,7 @@ export const SideBar = () => {
             )}
             <p
               className={`${
-                nav.href === pathName
+                nav.href === pathName || pathName.includes(nav.href)
                   ? "text-primary font-semibold"
                   : "font-normal"
               }`}

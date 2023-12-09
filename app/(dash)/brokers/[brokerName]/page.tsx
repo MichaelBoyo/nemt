@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { UploadDoc } from "~/components/UploadDoc";
 import { BrokersTrips } from "~/components/tables/BrokerTrips";
 import { Trip } from "~/types/trip.model";
+import { BreadCrumbs } from "~/components/BreadCrumbs";
 
 const trips: Trip[] = [
   {
@@ -22,9 +23,13 @@ const trips: Trip[] = [
   },
 ];
 const BrokerPage = ({ params }: { params: any }) => {
+  const links = [
+    { path: "/brokers", name: "Brokers" },
+    { path: "", name: params?.brokerName },
+  ];
   return (
-    <div className="flex flex-col   grow m-5 p-5  gap-4">
-      BrokerPage {params?.brokerName}
+    <div className="flex flex-col   grow  px-5 py-2  gap-4">
+      <BreadCrumbs links={links} />
       <UploadDoc />
       <BrokersTrips trips={trips} />
     </div>
