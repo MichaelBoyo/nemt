@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { DriversTable } from "~/components/tables/DriverTable";
 import { Pagination } from "~/components/Pagination";
 import { Metadata } from "next";
+import { InviteDriverButton } from "~/components/actionButtons/InviteDriverButton";
 export default async function Drivers() {
   const session = await getServerAuthSession();
   const res = await fetch(
@@ -26,6 +27,7 @@ export default async function Drivers() {
           <div className="stat-title">Total Drivers</div>
           <div className="stat-value">{data?.length}</div>
           <div className="stat-desc">21% more than last month</div>
+          <InviteDriverButton />
         </div>
       </div>
 

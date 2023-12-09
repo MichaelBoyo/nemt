@@ -10,7 +10,7 @@ export const InviteDriverButton = () => {
     setOpen(!open);
   };
   return (
-    <button onClick={handleClick} className="btn btn-primary">
+    <button onClick={handleClick} className="btn btn-primary m-2">
       Invite Driver
     </button>
   );
