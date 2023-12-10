@@ -1,11 +1,12 @@
 import { getServerAuthSession } from "~/lib/authoptions";
 import { baseUrl } from "~/lib";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { DriversTable } from "~/components/tables/DriverTable";
-import { Pagination } from "~/components/Pagination";
+import Pagination from "~/components/Pagination";
 import { Metadata } from "next";
 import { InviteDriverButton } from "~/components/actionButtons/InviteDriverButton";
 export default async function Drivers() {
+  const searchParams = useSearchParams();
   const session = await getServerAuthSession();
   const res = await fetch(
     `${baseUrl}/profile/providers/drivers?email=${session?.user.email}`,
@@ -20,6 +21,7 @@ export default async function Drivers() {
     return redirect("/sign-in");
   }
   const data = await res.json();
+  console.log({ data });
   return (
     <div className="flex flex-col rounded-lg  grow m-5 p-5  gap-4 ">
       <div className="stats shadow w-max ">
@@ -32,7 +34,10 @@ export default async function Drivers() {
       </div>
 
       <DriversTable drivers={data} />
-      <Pagination />
+      <Pagination
+        searchParams={searchParams}
+        totalPages={data?.totalPages || 1}
+      />
     </div>
   );
 }
