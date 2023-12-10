@@ -1,9 +1,10 @@
 "use client";
 import type { Driver } from "~/types/driver.type";
-import { User } from "react-feather";
+import { CheckCircle, User, XCircle } from "react-feather";
 import { useRouter } from "next/navigation";
 export const DriverRow = async ({ driver }: { driver: Driver }) => {
   const router = useRouter();
+  console.log({ driver });
   return (
     <tr
       onClick={() => router.push(`/drivers/${driver.driverEmail}`)}
@@ -29,6 +30,13 @@ export const DriverRow = async ({ driver }: { driver: Driver }) => {
 
       <td>{driver.driverEmail}</td>
       <td>{"...................."}</td>
+      <td>
+        {driver.available ? (
+          <CheckCircle className="text-primary" />
+        ) : (
+          <XCircle className="text-orange-400" />
+        )}
+      </td>
     </tr>
   );
 };

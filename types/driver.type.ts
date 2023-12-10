@@ -3,4 +3,5 @@ export type Driver = {
   firstName: string | null;
   lastName: string | null;
   phoneNumber: string | null;
+  available: boolean;
 };
