@@ -1,8 +1,21 @@
-import type { Trip } from "~/types/trip.model";
-import { TripRow } from "../rows/TripRow";
-export const BrokersTrips = ({ trips }: { trips: Trip[] }) => {
+import type { BrokerOrder, Trip } from "~/types/trip.model";
+import { BrokerOrderRow } from "../rows/BrokerOrderRow";
+import {
+  brokerSkipCols,
+  brokersRolestoDisplay,
+} from "~/constants/brokertrips.skilcols";
+import { camelToSentence } from "~/lib/sentence";
+export const BrokersTrips = ({
+  batch,
+  brokerOrders,
+}: {
+  batch: number;
+  brokerOrders: BrokerOrder[];
+}) => {
+  console.log({ brokerOrders });
   return (
-    <div className="overflow-x-auto w-max bg-base-100 rounded-lg shadow-lg">
+    <div className="overflow-x-auto w-max max-w-[90vw] bg-base-100 rounded-lg shadow-lg custom-scroll-bar">
+      <h1 className="p-2 text-primary font-semibold"> Batch {batch}</h1>
       <table className="table">
         <thead>
           <tr>
@@ -11,16 +24,23 @@ export const BrokersTrips = ({ trips }: { trips: Trip[] }) => {
                 <input type="checkbox" className="checkbox" />
               </label>
             </th>
-            {tableHeaders.map((header) => (
-              <th key={header}>{header}</th>
-            ))}
+
+            {Object.entries(brokerOrders[0]).map(([key, value]) => {
+              if (!brokersRolestoDisplay.includes(key)) return;
+              return (
+                <th key={key}>
+                  {/* {camelToSentence(key)} */}
+                  {key}
+                </th>
+              );
+            })}
 
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {trips.map((trip, index) => (
-            <TripRow trip={trip} key={index} />
+          {brokerOrders.map((brokerOrder, index) => (
+            <BrokerOrderRow brokerOrder={brokerOrder} key={index} />
           ))}
         </tbody>
       </table>

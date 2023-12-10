@@ -9,8 +9,11 @@ export const AssignDriverButton = () => {
     setOpen(!open);
   };
   return (
-    <button onClick={handleClick} className="btn text-white btn-primary btn-xs">
-      <PlusCircle size={17} /> Assign Driver
+    <button
+      onClick={handleClick}
+      className="btn whitespace-nowrap w-full text-white flex btn-primary btn-xs "
+    >
+      Assign Driver
     </button>
   );
 };
