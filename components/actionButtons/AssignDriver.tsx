@@ -4,13 +4,19 @@ import { useAssignDriver } from "~/zustand";
 
 export const AssignDriverButton = ({
   brokerOrderId,
+  batch,
 }: {
   brokerOrderId: number;
+  batch: number;
 }) => {
-  const { open, setOpen } = useAssignDriver((state) => state);
+  const { open, setOpen, setBrokerOrderId, setBatch } = useAssignDriver(
+    (state) => state
+  );
   const handleClick = (e: any) => {
     e.stopPropagation();
     setOpen(!open);
+    setBrokerOrderId(brokerOrderId);
+    setBatch(batch);
   };
   return (
     <button

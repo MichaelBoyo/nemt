@@ -15,13 +15,17 @@ export const useInviteBrokerStore = create<ModalProp>((set) => ({
 }));
 
 interface AssignDrriverModalProps extends ModalProp {
-  brokerOrderId: string;
-  setBrokerOrderId: (brokerOrderId: string) => void;
+  brokerOrderId: number;
+  batch: number;
+  setBrokerOrderId: (brokerOrderId: number) => void;
+  setBatch: (batch: number) => void;
 }
 
 export const useAssignDriver = create<AssignDrriverModalProps>((set) => ({
   open: false,
-  brokerOrderId: "",
+  brokerOrderId: 0,
+  batch: 0,
   setOpen: (open) => set({ open }),
   setBrokerOrderId: (brokerOrderId) => set({ brokerOrderId }),
+  setBatch: (batch) => set({ batch }),
 }));

@@ -1,4 +1,5 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import { baseUrl } from "..";
 import { getServerAuthSession } from "../authoptions";
 
@@ -27,10 +28,10 @@ export const inviteDriver = async (_: any, formData: FormData) => {
   }
 };
 
-export const assignTripToDriver = async (formData: FormData) => {
-  console.log({ formData });
+export const assignTripToDriver = async (_: any, formData: FormData) => {
+  console.dir({ formData }, { depth: null });
   const brokerId = formData.get("brokerId") as string;
-  const containerId = formData.get("containerId") as string;
+  const containerId = (formData.get("containerId") as string) || 0;
   const brokerOrderId = formData.get("brokerOrderId") as string;
   const driverEmail = formData.get("driverEmail") as string;
   const session = await getServerAuthSession();
@@ -45,14 +46,32 @@ export const assignTripToDriver = async (formData: FormData) => {
         },
       }
     );
+    console.log("res", res);
     if (res.ok) {
-      return await res.json();
+      const data = await res.json();
+      return {
+        data,
+        message: undefined,
+      };
     } else if (res.status === 400) {
-      return await res.json();
+      const data = await res.json();
+      console.log({ data });
+      return {
+        message: data.message,
+        data: undefined,
+      };
     } else {
-      return { status: res.status };
+      return {
+        message: "",
+        data: undefined,
+      };
     }
   } catch (error) {
-    console.log(error);
+    return {
+      message: "an error occured",
+      data: undefined,
+    };
+  } finally {
+    revalidatePath("/brokers/[brokerName]");
   }
 };

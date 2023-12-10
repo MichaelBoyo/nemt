@@ -12,4 +12,5 @@ export const brokersRolestoDisplay = [
   "providerName",
   "originAddress",
   "destinationAddress",
+  "driverEmail",
 ];

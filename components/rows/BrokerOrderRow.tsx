@@ -5,8 +5,10 @@ import { brokersRolestoDisplay } from "~/constants/brokertrips.skilcols";
 import { usePathname, useRouter } from "next/navigation";
 export const BrokerOrderRow = async ({
   brokerOrder,
+  batch,
 }: {
   brokerOrder: BrokerOrder;
+  batch: number;
 }) => {
   const router = useRouter();
   const pathName = usePathname();
@@ -28,9 +30,11 @@ export const BrokerOrderRow = async ({
           </td>
         );
       })}
-      <th className="">
-        <AssignDriverButton brokerOrderId={brokerOrder.id} />
-      </th>
+      {!brokerOrder.driverEmail && (
+        <th className="">
+          <AssignDriverButton batch={batch} brokerOrderId={brokerOrder.id} />
+        </th>
+      )}
     </tr>
   );
 };

@@ -36,7 +36,11 @@ export const BrokersTrips = ({
         </thead>
         <tbody>
           {brokerOrders.map((brokerOrder, index) => (
-            <BrokerOrderRow brokerOrder={brokerOrder} key={index} />
+            <BrokerOrderRow
+              batch={batch}
+              brokerOrder={brokerOrder}
+              key={index}
+            />
           ))}
         </tbody>
       </table>
