@@ -20,22 +20,15 @@ export const DriverRow = async ({ driver }: { driver: Driver }) => {
             <User />
           </div>
           <div>
-            <div className="font-bold">Hart Hagerty</div>
-            <div className="text-sm opacity-50">United States</div>
+            <p className="font-bold capitalize">
+              {driver.firstName || driver.driverEmail.split("@")[0]}
+            </p>
           </div>
         </div>
       </td>
-      <td>
-        Zemlak, Daniel and Leannon
-        <br />
-        <span className="badge badge-ghost badge-sm">
-          Desktop Support Technician
-        </span>
-      </td>
+
       <td>{driver.driverEmail}</td>
-      <th>
-        <button className="btn btn-ghost btn-xs">details</button>
-      </th>
+      <td>{"...................."}</td>
     </tr>
   );
 };

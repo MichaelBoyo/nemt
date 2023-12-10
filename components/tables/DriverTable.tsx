@@ -28,4 +28,4 @@ export const DriversTable = ({ drivers }: { drivers: Driver[] }) => {
   );
 };
 
-const tableHeaders = ["First Name", "Last Name", "Email", "Phone Number"];
+const tableHeaders = ["Name", "Email", "Phone Number"];
