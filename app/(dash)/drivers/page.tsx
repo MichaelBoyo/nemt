@@ -1,25 +1,10 @@
-import { getServerAuthSession } from "~/lib/authoptions";
-import { baseUrl } from "~/lib";
-import { redirect } from "next/navigation";
 import { DriversTable } from "~/components/tables/DriverTable";
 import Pagination from "~/components/Pagination";
 import { Metadata } from "next";
 import { InviteDriverButton } from "~/components/actionButtons/InviteDriverButton";
+import { getDrivers } from "~/lib/drivers/loader";
 export default async function Drivers({ searchParams }: { searchParams: any }) {
-  const session = await getServerAuthSession();
-  const res = await fetch(
-    `${baseUrl}/profile/providers/drivers?email=${session?.user.email}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + session?.user.access_token,
-      },
-    }
-  );
-  if (!res.ok) {
-    return redirect("/sign-in");
-  }
-  const data = await res.json();
+  const data = await getDrivers();
   console.log({ data });
   return (
     <div className="flex flex-col rounded-lg  grow m-5 p-5  gap-4 ">

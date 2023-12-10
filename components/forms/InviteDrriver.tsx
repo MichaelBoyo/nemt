@@ -1,9 +1,9 @@
 "use client";
 import { useInviteDriverStore } from "~/zustand";
 import Modal from "../Modal";
-import { inviteDriver } from "~/lib/driver.action";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
+import { inviteDriver } from "~/lib/drivers/action";
 export const InviteDriver = () => {
   const { open, setOpen } = useInviteDriverStore();
   const [formState, formAction] = useFormState(inviteDriver, {

@@ -29,7 +29,7 @@ export const BrokerOrderRow = async ({
         );
       })}
       <th className="">
-        <AssignDriverButton />
+        <AssignDriverButton brokerOrderId={brokerOrder.id} />
       </th>
     </tr>
   );

@@ -1,10 +1,6 @@
-import type { BrokerOrder, Trip } from "~/types/trip.model";
+import type { BrokerOrder } from "~/types/trip.model";
 import { BrokerOrderRow } from "../rows/BrokerOrderRow";
-import {
-  brokerSkipCols,
-  brokersRolestoDisplay,
-} from "~/constants/brokertrips.skilcols";
-import { camelToSentence } from "~/lib/sentence";
+import { brokersRolestoDisplay } from "~/constants/brokertrips.skilcols";
 export const BrokersTrips = ({
   batch,
   brokerOrders,

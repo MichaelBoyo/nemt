@@ -1,14 +1,16 @@
 "use client";
 import { useAssignDriver } from "~/zustand";
 import Modal from "../Modal";
-import { inviteDriver } from "~/lib/driver.action";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { Submit } from "../Submit";
-import { assignDriver } from "~/lib/trip.actions";
-export const AssignDriver = () => {
+import { Driver } from "~/types/driver.type";
+import { assignTripToDriver } from "~/lib/drivers/action";
+import { useSearchParams } from "next/navigation";
+export const AssignDriver = ({ drivers }: { drivers: Driver[] }) => {
+  const searchParams = useSearchParams();
   const { open, setOpen } = useAssignDriver();
-  const [formState, formAction] = useFormState(assignDriver, {
+  const [formState, formAction] = useFormState(assignTripToDriver, {
     data: undefined,
     message: undefined,
   });
@@ -19,14 +21,18 @@ export const AssignDriver = () => {
   return (
     <Modal open={open} close={() => setOpen(false)}>
       <form action={formAction} className="flex flex-col gap-2 w-full ">
-        <label className="font-semibold">Assign Driver Email</label>
-        <input
-          className="input input-bordered"
-          placeholder="johndoe@gmil.com"
+        <label className="font-semibold">Select Driver </label>
+
+        <select
           name="driverEmail"
-          type="email"
-          required
-        />
+          className="select select-bordered w-full max-w-xs"
+        >
+          {drivers?.map((driver) => (
+            <option key={driver.driverEmail} value={driver.driverEmail}>
+              {driver.driverEmail}
+            </option>
+          ))}
+        </select>
         {formState.message && (
           <p className="text-center  flex items-center  gap-2 rounded-lg text-white bg-error">
             {formState.message}

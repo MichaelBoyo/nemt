@@ -1,11 +1,15 @@
 "use client";
 
-import { PlusCircle } from "react-feather";
 import { useAssignDriver } from "~/zustand";
 
-export const AssignDriverButton = () => {
+export const AssignDriverButton = ({
+  brokerOrderId,
+}: {
+  brokerOrderId: number;
+}) => {
   const { open, setOpen } = useAssignDriver((state) => state);
-  const handleClick = () => {
+  const handleClick = (e: any) => {
+    e.stopPropagation();
     setOpen(!open);
   };
   return (

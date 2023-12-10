@@ -6,7 +6,9 @@ export const BrokerRow = async ({ broker }: { broker: Broker }) => {
   const router = useRouter();
   return (
     <tr
-      onClick={() => router.push(`/brokers/${broker.brokerName}`)}
+      onClick={() =>
+        router.push(`/brokers/${broker.brokerName}?id=${broker.id}`)
+      }
       className="hover:bg-info cursor-pointer"
     >
       <th>
