@@ -1,6 +1,7 @@
 import type { BrokerOrder } from "~/types/trip.model";
 import { BrokerOrderRow } from "../rows/BrokerOrderRow";
 import { brokersRolestoDisplay } from "~/constants/brokertrips.skilcols";
+import { camelToSentence } from "~/lib/sentence";
 export const BrokersTrips = ({
   batch,
   brokerOrders,
@@ -23,12 +24,7 @@ export const BrokersTrips = ({
 
             {Object.entries(brokerOrders[0]).map(([key, value]) => {
               if (!brokersRolestoDisplay.includes(key)) return;
-              return (
-                <th key={key}>
-                  {/* {camelToSentence(key)} */}
-                  {key}
-                </th>
-              );
+              return <th key={key}>{camelToSentence(key)}</th>;
             })}
 
             <th></th>

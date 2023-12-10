@@ -26,15 +26,15 @@ export const BrokerOrderRow = async ({
         if (!brokersRolestoDisplay.includes(key)) return;
         return (
           <td className="whitespace-nowrap" key={key}>
-            {value}
+            {value || (
+              <AssignDriverButton
+                batch={batch}
+                brokerOrderId={brokerOrder.id}
+              />
+            )}
           </td>
         );
       })}
-      {!brokerOrder.driverEmail && (
-        <th className="">
-          <AssignDriverButton batch={batch} brokerOrderId={brokerOrder.id} />
-        </th>
-      )}
     </tr>
   );
 };
