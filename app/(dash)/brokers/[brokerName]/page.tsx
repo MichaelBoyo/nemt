@@ -40,7 +40,6 @@ const BrokerPage = async ({ params }: { params: any }) => {
   );
 
   const data = await res.json();
-  console.log({ data });
 
   return (
     <div className="flex flex-col   grow  px-5 py-2  gap-4">

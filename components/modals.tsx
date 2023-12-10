@@ -5,7 +5,6 @@ import { getDrivers } from "~/lib/drivers/loader";
 
 export const Modals = async () => {
   const drivers = await getDrivers();
-  console.log({ drivers });
   return (
     <>
       <InviteDriver />

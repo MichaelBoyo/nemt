@@ -46,7 +46,6 @@ export const assignTripToDriver = async (_: any, formData: FormData) => {
         },
       }
     );
-    console.log("res", res);
     if (res.ok) {
       const data = await res.json();
       return {
@@ -55,7 +54,6 @@ export const assignTripToDriver = async (_: any, formData: FormData) => {
       };
     } else if (res.status === 400) {
       const data = await res.json();
-      console.log({ data });
       return {
         message: data.message,
         data: undefined,

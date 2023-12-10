@@ -5,7 +5,6 @@ import { InviteDriverButton } from "~/components/actionButtons/InviteDriverButto
 import { getDrivers } from "~/lib/drivers/loader";
 export default async function Drivers({ searchParams }: { searchParams: any }) {
   const data = await getDrivers();
-  console.log({ data });
   return (
     <div className="flex flex-col rounded-lg  grow m-5 p-5  gap-4 ">
       <div className="stats shadow w-max ">

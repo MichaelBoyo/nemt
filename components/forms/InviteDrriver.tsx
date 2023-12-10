@@ -10,9 +10,6 @@ export const InviteDriver = () => {
     data: undefined,
     message: undefined,
   });
-  useEffect(() => {
-    console.log({ formState });
-  }, [formState]);
 
   return (
     <Modal open={open} close={() => setOpen(false)}>

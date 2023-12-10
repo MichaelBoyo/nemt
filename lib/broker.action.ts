@@ -4,9 +4,7 @@ import { baseUrl } from ".";
 import { getServerAuthSession } from "./authoptions";
 
 export const inviteBroker = async (_: any, formData: FormData) => {
-  console.log({ formData });
   const session = await getServerAuthSession();
-  console.log({ session });
   const providerEmail = session?.user?.email;
   const brokerName = formData.get("brokerName") as string;
   try {
@@ -25,11 +23,9 @@ export const inviteBroker = async (_: any, formData: FormData) => {
     } else if (res.status === 400) {
       return await res.json();
     } else {
-      console.log({ res });
       return { status: res.status };
     }
   } catch (error) {
-    console.log(error);
     return { error: "wahala" };
   } finally {
     revalidatePath("/brokers");

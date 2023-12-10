@@ -24,7 +24,6 @@ export default function SignIn() {
         redirect: false,
         ...payload,
       });
-      console.log("result", result);
 
       if (result?.error) {
         setErrorMessage(result.error);
@@ -33,7 +32,6 @@ export default function SignIn() {
         router.push("/dash");
       }
     } catch (err) {
-      console.log("Login error:", err);
       // toast.error('Login failed. Please try again later.');
     } finally {
       setLoading(false);

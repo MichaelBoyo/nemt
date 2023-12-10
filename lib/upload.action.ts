@@ -13,7 +13,6 @@ export const uploadFIle = async (form: FormData) => {
   //   const wb = read(buffr);
 
   //   const data = utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
-  console.log(session?.user);
 
   try {
     const body = new FormData();
@@ -28,7 +27,6 @@ export const uploadFIle = async (form: FormData) => {
       body,
     });
     const data = await res.json();
-    console.log({ data });
   } catch (error) {
     console.log(error);
   }

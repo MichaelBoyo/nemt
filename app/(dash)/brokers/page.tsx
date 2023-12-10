@@ -19,7 +19,6 @@ export default async function Brokers({ searchParams }: { searchParams: any }) {
     return redirect("/sign-in");
   }
   const data = await res.json();
-  console.log({ data });
   return (
     <div className="flex flex-col rounded-lg  grow m-5 p-5  gap-4 ">
       <div className="flex items-center gap-10">

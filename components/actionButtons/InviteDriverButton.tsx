@@ -5,8 +5,6 @@ import { useInviteDriverStore } from "~/zustand";
 export const InviteDriverButton = () => {
   const { open, setOpen } = useInviteDriverStore((state) => state);
   const handleClick = () => {
-    console.log({ open });
-    console.log("clicked");
     setOpen(!open);
   };
   return (
