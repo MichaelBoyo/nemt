@@ -1,11 +1,14 @@
 "use client";
 import Image from "next/image";
-import { createElement } from "react";
 import Link from "next/link";
-import { TripsIcon } from "~/icons-tsx/TripsIcon";
-import { HomeIcon } from "~/icons-tsx/HomeIcon";
-import { SettingsIcon } from "~/icons-tsx/SettingsIcon";
-import { HIstoryIcon } from "~/icons-tsx/HIstoryIcon";
+import { RiHomeLine } from "react-icons/ri";
+import { RiShieldUserLine } from "react-icons/ri";
+import { IoMdStopwatch } from "react-icons/io";
+import {
+  MdOutlineWorkHistory,
+  MdApartment,
+  MdOutlineSettings,
+} from "react-icons/md";
 import { usePathname } from "next/navigation";
 export const SideBar = () => {
   const pathName = usePathname();
@@ -16,22 +19,22 @@ export const SideBar = () => {
           <Link
             className={`${
               nav.href === pathName || pathName.includes(nav.href)
-                ? "bg-info border rounded-none"
+                ? "bg-info border rounded-none "
                 : ""
             } btn btn-ghost justify-start hover:bg-info  `}
             href={nav.href}
             key={i}
           >
-            {createElement(
-              "i",
-              {
-                style: {
-                  fill: true,
-                },
-                fill: "red",
-              },
-              nav.icon
-            )}
+            <i
+              className={`text-primary ${
+                nav.href === pathName || pathName.includes(nav.href)
+                  ? "border-l-4 border-primary  -ml-3 pl-2 "
+                  : ""
+              }`}
+            >
+              {nav.icon}
+            </i>
+
             <p
               className={`${
                 nav.href === pathName || pathName.includes(nav.href)
@@ -58,10 +61,34 @@ export const SideBar = () => {
 };
 
 const navs = [
-  { name: "Home", icon: <HomeIcon />, href: "/dash" },
-  { name: "Trips", icon: <TripsIcon />, href: "/trips" },
-  { name: "History", icon: <HIstoryIcon />, href: "/history" },
-  { name: "Settings", icon: <SettingsIcon />, href: "/settings" },
-  { name: "Drivers", icon: <SettingsIcon />, href: "/drivers" },
-  { name: "Brokers", icon: <SettingsIcon />, href: "/brokers" },
+  {
+    name: "Home",
+    icon: <RiHomeLine size={22} />,
+    href: "/dash",
+  },
+  {
+    name: "Trips",
+    icon: <MdOutlineWorkHistory size={22} />,
+    href: "/trips",
+  },
+  {
+    name: "History",
+    icon: <IoMdStopwatch size={22} />,
+    href: "/history",
+  },
+  {
+    name: "Settings",
+    icon: <MdOutlineSettings size={22} />,
+    href: "/settings",
+  },
+  {
+    name: "Drivers",
+    icon: <RiShieldUserLine size={22} />,
+    href: "/drivers",
+  },
+  {
+    name: "Brokers",
+    icon: <MdApartment size={22} />,
+    href: "/brokers",
+  },
 ];
