@@ -47,13 +47,14 @@ const BrokerPage = async ({ params }: { params: any }) => {
         <BreadCrumbs links={links} />
       </div>
       <UploadDoc broker={params?.brokerName} />
-      <div className="overflow-scroll max-h-[75vh] items-center w-full   flex flex-col gap-10 custom-scroll-bar pr-4">
+      <div className="overflow-scroll max-h-[75vh]    flex flex-col gap-10 custom-scroll-bar pr-4">
         {data &&
           // @ts-ignore
           data?.map((item, index) => (
             <BrokersTrips
               batch={item.batchNumber}
               key={index}
+              index={index}
               brokerOrders={item?.brokerOrders}
             />
           ))}
