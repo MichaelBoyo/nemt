@@ -1,5 +1,5 @@
 "use client";
-import { useInviteBrokerStore } from "~/zustand";
+import { useInviteBrokerStore, usePopUpStore } from "~/zustand";
 import Modal from "../Modal";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
@@ -7,6 +7,7 @@ import { inviteBroker } from "~/lib/broker.action";
 import { Submit } from "../Submit";
 export const AddBroker = () => {
   const { open, setOpen } = useInviteBrokerStore();
+  const { setOpen: setPopUpOpen, setData } = usePopUpStore();
   const [formState, formAction] = useFormState(inviteBroker, {
     data: undefined,
     message: undefined,
@@ -15,6 +16,11 @@ export const AddBroker = () => {
   useEffect(() => {
     if (formState.ok) {
       setOpen(false);
+      setPopUpOpen(true);
+      setData({
+        type: "success",
+        message: "Broker Added Successfully",
+      });
     }
   }, [formState, setOpen]);
 
