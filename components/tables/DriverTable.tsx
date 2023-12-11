@@ -2,7 +2,7 @@ import { DriverRow } from "~/components/rows/DriverRow";
 import type { Driver } from "~/types/driver.type";
 export const DriversTable = ({ drivers }: { drivers: Driver[] }) => {
   return (
-    <div className="overflow-x-auto w-max bg-base-100 rounded-lg shadow-lg">
+    <div className="overflow-x-auto max-h-[78vh] overflow-auto custom-scroll-bar w-max bg-base-100 rounded-lg shadow-lg">
       <table className="table">
         <thead>
           <tr>
