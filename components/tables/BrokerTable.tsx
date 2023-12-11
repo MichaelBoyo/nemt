@@ -2,7 +2,7 @@ import { BrokerRow } from "~/components/rows/BrokerRow";
 import type { Broker } from "~/types/broker.type";
 export const BrokersTable = ({ brokers }: { brokers: Broker[] }) => {
   return (
-    <div className="overflow-x-auto w-max bg-base-100 rounded-lg shadow-lg">
+    <div className="overflow-x-auto w-max max-h-[78vh] overflow-auto custom-scroll-bar bg-base-100 rounded-lg shadow-lg">
       <table className="table">
         <thead>
           <tr>

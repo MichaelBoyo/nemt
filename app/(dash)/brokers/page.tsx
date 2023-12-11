@@ -20,8 +20,8 @@ export default async function Brokers({ searchParams }: { searchParams: any }) {
   }
   const data = await res.json();
   return (
-    <div className="flex flex-col rounded-lg  grow m-5 p-5  gap-4 ">
-      <div className="flex items-center gap-10">
+    <div className="flex rounded-lg  grow m-5 p-5  gap-4 ">
+      <div className="flex items-center h-max gap-10">
         <div className="stats shadow w-max ">
           <div className="stat ">
             <div className="stat-title">Total Brokers</div>
@@ -31,12 +31,13 @@ export default async function Brokers({ searchParams }: { searchParams: any }) {
           </div>
         </div>
       </div>
-
-      <BrokersTable brokers={data?.brokers} />
-      <Pagination
-        searchParams={searchParams}
-        totalPages={data?.totalPages || 1}
-      />
+      <div className="flex flex-col gap-5">
+        <BrokersTable brokers={data?.brokers} />
+        <Pagination
+          searchParams={searchParams}
+          totalPages={data?.totalPages || 1}
+        />
+      </div>
     </div>
   );
 }
