@@ -4,7 +4,6 @@ import { CheckCircle, User, XCircle } from "react-feather";
 import { useRouter } from "next/navigation";
 export const DriverRow = async ({ driver }: { driver: Driver }) => {
   const router = useRouter();
-  console.log({ driver });
   return (
     <tr
       onClick={() => router.push(`/drivers/${driver.driverEmail}`)}

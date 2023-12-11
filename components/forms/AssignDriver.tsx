@@ -9,7 +9,6 @@ import { assignTripToDriver } from "~/lib/drivers/action";
 import { useSearchParams } from "next/navigation";
 export const AssignDriver = ({ drivers }: { drivers: Driver[] }) => {
   const searchParams = useSearchParams();
-  console.log("drivers in assign", drivers);
   const { open, setOpen, brokerOrderId, batch } = useAssignDriver();
   const [formState, formAction] = useFormState(assignTripToDriver, {
     message: undefined,

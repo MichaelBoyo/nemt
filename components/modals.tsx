@@ -6,7 +6,6 @@ import { GenerateInvoice } from "./forms/GenerateInvoice";
 
 export const Modals = async () => {
   const drivers = await getDrivers();
-  console.log({ drivers });
   return (
     <>
       <InviteDriver />
