@@ -42,10 +42,12 @@ const BrokerPage = async ({ params }: { params: any }) => {
   const data = await res.json();
 
   return (
-    <div className="flex flex-col    px-5 py-2  gap-4">
-      <BreadCrumbs links={links} />
+    <div className="flex flex-col  grow items-center  px-5 py-2  gap-4">
+      <div className="w-full">
+        <BreadCrumbs links={links} />
+      </div>
       <UploadDoc broker={params?.brokerName} />
-      <div className="overflow-scroll max-h-[75vh]  flex flex-col gap-10 custom-scroll-bar pr-4">
+      <div className="overflow-scroll max-h-[75vh] items-center w-full   flex flex-col gap-10 custom-scroll-bar pr-4">
         {data &&
           // @ts-ignore
           data?.map((item, index) => (
