@@ -18,6 +18,7 @@ export const GenerateInvoice = () => {
       setOpen(false);
     }
   }, [formState, setOpen]);
+  if (open) return null;
 
   return (
     <Modal open={open} close={() => setOpen(false)}>

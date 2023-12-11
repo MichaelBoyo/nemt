@@ -9,6 +9,7 @@ import { assignTripToDriver } from "~/lib/drivers/action";
 import { useSearchParams } from "next/navigation";
 export const AssignDriver = ({ drivers }: { drivers: Driver[] }) => {
   const searchParams = useSearchParams();
+  console.log("drivers in assign", drivers);
   const { open, setOpen, brokerOrderId, batch } = useAssignDriver();
   const [formState, formAction] = useFormState(assignTripToDriver, {
     message: undefined,
@@ -24,14 +25,15 @@ export const AssignDriver = ({ drivers }: { drivers: Driver[] }) => {
     <Modal open={open} close={() => setOpen(false)}>
       <form action={formAction} className="flex flex-col gap-2 w-full ">
         <label className="font-semibold">Select Driver </label>
-        <input hidden name="brokerOrderId" value={brokerOrderId} />
+        <input readOnly hidden name="brokerOrderId" value={brokerOrderId} />
         <input
           hidden
           name="brokerId"
+          readOnly
           value={Number(searchParams.get("id")) || 0}
         />
-        <input hidden name="containerId" value={batch} />
-
+        <input readOnly hidden name="containerId" value={batch} />
+        <div>oluwa oo</div>
         <select
           name="driverEmail"
           className="select select-bordered w-full max-w-xs"
