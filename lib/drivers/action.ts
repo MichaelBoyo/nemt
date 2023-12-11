@@ -16,15 +16,23 @@ export const inviteDriver = async (_: any, formData: FormData) => {
       },
       body: JSON.stringify({ driverEmail, providerEmail }),
     });
-    if (res.ok) {
-      return await res.json();
+    // const data = await res.json();
+    // console.log("data =>>>>>>>>>>>>>>>", data);
+    if (res.statusText === "OK") {
+      return {
+        message: "Driver invited successfully",
+        success: true,
+      };
     } else if (res.status === 400) {
       return await res.json();
     } else {
       return { status: res.status };
     }
   } catch (error) {
+    console.log({ error });
     return { error: "an error occured" };
+  } finally {
+    revalidatePath("/drivers");
   }
 };
 

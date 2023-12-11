@@ -1,15 +1,30 @@
 "use client";
-import { useInviteDriverStore } from "~/zustand";
+import { useEffect } from "react";
+import { useInviteDriverStore, usePopUpStore } from "~/zustand";
 import Modal from "../Modal";
 import { Submit } from "../Submit";
 import { useFormState } from "react-dom";
 import { inviteDriver } from "~/lib/drivers/action";
 export const InviteDriver = () => {
   const { open, setOpen } = useInviteDriverStore();
+  const { setOpen: setPopUpOpen, setData } = usePopUpStore();
   const [formState, formAction] = useFormState(inviteDriver, {
     data: undefined,
     message: undefined,
+    success: false,
   });
+
+  useEffect(() => {
+    console.log({ formState });
+    if (formState?.success) {
+      setOpen(false);
+      setPopUpOpen(true);
+      setData({
+        type: "success",
+        message: formState.message,
+      });
+    }
+  }, [formState]);
 
   return (
     <Modal open={open} close={() => setOpen(false)}>
@@ -22,7 +37,7 @@ export const InviteDriver = () => {
           type="email"
           required
         />
-        {formState.message && (
+        {formState.message && !formState.success && (
           <p className="text-center  flex items-center  gap-2 rounded-lg text-white bg-error">
             {formState.message}
           </p>

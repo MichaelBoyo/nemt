@@ -4,6 +4,7 @@ import "../globals.css";
 import { NavBar } from "~/components/Navbar";
 import { SideBar } from "~/components/SideBar";
 import { Modals } from "~/components/modals";
+import { Popup } from "~/components/Popup";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +17,7 @@ const App = async ({ children }: { children: React.ReactNode }) => {
   return (
     <html data-theme="nemt" lang="en">
       <body className={inter.className}>
+        <Popup />
         <NavBar />
         <main className="flex w-screen bg-info ">
           <Modals />
