@@ -16,28 +16,8 @@ export const BrokerRow = async ({ broker }: { broker: Broker }) => {
           <input type="checkbox" className="checkbox" />
         </label>
       </th>
-      <td>
-        <div className="flex items-center gap-3">
-          <div className="rounded-full border p-2">
-            <User />
-          </div>
-          <div>
-            <div className="font-bold">Hart Hagerty</div>
-            <div className="text-sm opacity-50">United States</div>
-          </div>
-        </div>
-      </td>
-      <td>
-        Zemlak, Daniel and Leannon
-        <br />
-        <span className="badge badge-ghost badge-sm">
-          Desktop Support Technician
-        </span>
-      </td>
       <td>{broker.brokerName}</td>
-      <th>
-        <button className="btn btn-ghost btn-xs">details</button>
-      </th>
+      <td>{new Date(broker.dateTimeCreated).toDateString()}</td>
     </tr>
   );
 };

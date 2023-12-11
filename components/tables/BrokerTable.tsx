@@ -28,4 +28,4 @@ export const BrokersTable = ({ brokers }: { brokers: Broker[] }) => {
   );
 };
 
-const tableHeaders = ["First Name", "Last Name", "Email", "Phone Number"];
+const tableHeaders = ["Broker Name", "Time Created"];
