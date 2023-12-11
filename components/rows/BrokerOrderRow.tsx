@@ -25,22 +25,24 @@ export const BrokerOrderRow = async ({
       </th>
       {Object.entries(brokerOrder).map(([key, value]) => {
         if (!brokersRolestoDisplay.includes(key)) return;
-        // if (key === "originAddress") {
-        //   return (
-        //     <td className="whitespace-nowrap" key={key}>
-        //       <span className=" bg-green-50 text-success">
-        //         {value || "..."}
-        //       </span>
-        //     </td>
-        //   );
-        // }
-        // if (key === "destinationAddress") {
-        //   return (
-        //     <td className="whitespace-nowrap" key={key}>
-        //       <span className=" bg-red-50 text-error">{value || "..."}</span>
-        //     </td>
-        //   );
-        // }
+        if (key === "originAddress") {
+          return (
+            <td className="whitespace-nowrap" key={key}>
+              <span className="badge bg-green-50 text-success">
+                {value || "..."}
+              </span>
+            </td>
+          );
+        }
+        if (key === "destinationAddress") {
+          return (
+            <td className="whitespace-nowrap" key={key}>
+              <span className="badge bg-red-50 text-error">
+                {value || "..."}
+              </span>
+            </td>
+          );
+        }
         return (
           <td className="whitespace-nowrap" key={key}>
             {value || "..."}
