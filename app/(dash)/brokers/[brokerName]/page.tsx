@@ -42,18 +42,20 @@ const BrokerPage = async ({ params }: { params: any }) => {
   const data = await res.json();
 
   return (
-    <div className="flex flex-col   grow  px-5 py-2  gap-4">
+    <div className="flex flex-col    px-5 py-2  gap-4">
       <BreadCrumbs links={links} />
       <UploadDoc broker={params?.brokerName} />
-      {data &&
-        // @ts-ignore
-        data?.map((item, index) => (
-          <BrokersTrips
-            batch={item.batchNumber}
-            key={index}
-            brokerOrders={item?.brokerOrders}
-          />
-        ))}
+      <div className="overflow-scroll max-h-[75vh]  flex flex-col gap-10 custom-scroll-bar pr-4">
+        {data &&
+          // @ts-ignore
+          data?.map((item, index) => (
+            <BrokersTrips
+              batch={item.batchNumber}
+              key={index}
+              brokerOrders={item?.brokerOrders}
+            />
+          ))}
+      </div>
     </div>
   );
 };

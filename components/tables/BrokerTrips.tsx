@@ -10,7 +10,7 @@ export const BrokersTrips = ({
   brokerOrders: BrokerOrder[];
 }) => {
   return (
-    <div className="overflow-x-auto w-max max-w-[90vw] bg-base-100 rounded-lg shadow-lg custom-scroll-bar">
+    <div className="overflow-x-auto min-h-[35vh] w-max max-w-[90vw] bg-base-100 rounded-lg shadow-lg custom-scroll-bar">
       <h1 className="p-2 text-primary font-semibold"> Batch {batch}</h1>
       <table className="table">
         <thead>
