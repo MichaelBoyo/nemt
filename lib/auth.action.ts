@@ -2,6 +2,7 @@
 import { FormState } from "~/types/form.state";
 
 const baseUrl = process.env.API_URL;
+
 export const signIn = async (email: string, password: string) => {
   try {
     const res = await fetch(`${baseUrl}/users/login`, {
