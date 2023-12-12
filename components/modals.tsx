@@ -3,6 +3,7 @@ import { AddBroker } from "./forms/AddBroker";
 import { AssignDriver } from "./forms/AssignDriver";
 import { getDrivers } from "~/lib/drivers/loader";
 import { GenerateInvoice } from "./forms/GenerateInvoice";
+import { Logout } from "./forms/Logout";
 
 export const Modals = async () => {
   const drivers = await getDrivers();
@@ -12,6 +13,7 @@ export const Modals = async () => {
       <AddBroker />
       <AssignDriver drivers={drivers} />
       <GenerateInvoice />
+      <Logout />
     </>
   );
 };

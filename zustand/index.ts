@@ -47,3 +47,8 @@ export const usePopUpStore = create<PopUpProps>((set) => ({
   },
   setData: (data) => set({ data }),
 }));
+
+export const useLogoutStore = create<ModalProp>((set) => ({
+  open: false,
+  setOpen: (open) => set({ open }),
+}));

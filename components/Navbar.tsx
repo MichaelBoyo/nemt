@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { User } from "react-feather";
+import { LogOut, User } from "react-feather";
 import { SearchIcon } from "~/icons-tsx/SearchIcon";
 import { getServerAuthSession } from "~/lib/authoptions";
+import { LogoutButton } from "./actionButtons/LogoutButton";
 export const NavBar = async () => {
-  const session = await getServerAuthSession();
   return (
     <nav className="navbar bg-base-100 ">
       <div className="navbar-start">
@@ -61,8 +61,21 @@ export const NavBar = async () => {
         </div>
       </div>
       <div className="navbar-end">
-        <div className="border rounded-full p-2">
-          <User />
+        <div className="dropdown dropdown-end">
+          <div tabIndex={0} role="button" className="btn btn-circle">
+            <User />
+          </div>
+          <ul
+            tabIndex={0}
+            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <a>Profile</a>
+            </li>
+            <li>
+              <LogoutButton />
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
