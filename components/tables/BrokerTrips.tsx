@@ -14,6 +14,7 @@ export const BrokersTrips = ({
   return (
     <div className="overflow-x-auto min-h-[35vh] w-full max-w-[90vw] bg-base-100 rounded-lg shadow-lg custom-scroll-bar">
       <h1 className="p-2 text-primary font-semibold"> Batch {index + 1}</h1>
+      {/* {JSON.stringify(brokerOrders[0])} */}
       <table className="table">
         <thead>
           <tr>
