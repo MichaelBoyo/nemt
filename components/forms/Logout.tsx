@@ -3,7 +3,6 @@ import { useLogoutStore } from "~/zustand";
 import Modal from "../Modal";
 
 import { Submit } from "../Submit";
-import { useSearchParams } from "next/navigation";
 import { signOut } from "next-auth/react";
 export const Logout = () => {
   const { open, setOpen } = useLogoutStore();
