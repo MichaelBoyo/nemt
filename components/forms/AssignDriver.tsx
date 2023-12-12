@@ -38,7 +38,6 @@ export const AssignDriver = ({ drivers }: { drivers: Driver[] }) => {
           value={Number(searchParams.get("id")) || 0}
         />
         <input readOnly hidden name="containerId" value={batch} />
-        <div>oluwa oo</div>
         <select
           name="driverEmail"
           className="select select-bordered w-full max-w-xs"
