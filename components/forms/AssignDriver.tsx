@@ -1,5 +1,5 @@
 "use client";
-import { useAssignDriver } from "~/zustand";
+import { useAssignDriver, usePopUpStore } from "~/zustand";
 import Modal from "../Modal";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
@@ -10,6 +10,7 @@ import { useSearchParams } from "next/navigation";
 export const AssignDriver = ({ drivers }: { drivers: Driver[] }) => {
   const searchParams = useSearchParams();
   const { open, setOpen, brokerOrderId, batch } = useAssignDriver();
+  const { setOpen: setPopUpOpen, setData } = usePopUpStore();
   const [formState, formAction] = useFormState(assignTripToDriver, {
     message: undefined,
     data: undefined,
@@ -17,6 +18,11 @@ export const AssignDriver = ({ drivers }: { drivers: Driver[] }) => {
   useEffect(() => {
     if (formState?.data?.message) {
       setOpen(false);
+      setPopUpOpen(true);
+      setData({
+        type: "success",
+        message: "Driver Assigned Successfully",
+      });
     }
   }, [formState, setOpen]);
 
