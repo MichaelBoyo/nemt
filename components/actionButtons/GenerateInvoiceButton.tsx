@@ -1,22 +1,28 @@
 "use client";
 
-import { useAssignDriver } from "~/zustand";
+import { useGenerateInvoice } from "~/zustand";
 
 export const GenerateInvoiceButton = ({
   brokerOrderId,
   batch,
+  driverEmail
 }: {
   brokerOrderId: number;
   batch: number;
+  driverEmail: string;
 }) => {
-  const { open, setOpen, setBrokerOrderId, setBatch } = useAssignDriver(
-    (state) => state
-  );
+  const {
+    open,
+    setOpen,
+    setBrokerOrderId,
+    setDriverEmail
+  } = useGenerateInvoice((state) => state);
+  console.log({ open });
   const handleClick = (e: any) => {
     e.stopPropagation();
     setOpen(!open);
     setBrokerOrderId(brokerOrderId);
-    setBatch(batch);
+    setDriverEmail(driverEmail);
   };
   return (
     <button

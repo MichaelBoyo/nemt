@@ -53,7 +53,11 @@ export const BrokerOrderRow = async ({
         {!brokerOrder.driverEmail ? (
           <AssignDriverButton batch={batch} brokerOrderId={brokerOrder.id} />
         ) : (
-          <GenerateInvoiceButton batch={batch} brokerOrderId={brokerOrder.id} />
+          <GenerateInvoiceButton
+            driverEmail={brokerOrder.driverEmail}
+            batch={batch}
+            brokerOrderId={brokerOrder.id}
+          />
         )}
       </td>
     </tr>

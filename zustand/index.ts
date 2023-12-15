@@ -30,6 +30,26 @@ export const useAssignDriver = create<AssignDrriverModalProps>((set) => ({
   setBatch: (batch) => set({ batch }),
 }));
 
+interface GenerateInvoiceProps extends ModalProp {
+  brokerOrderId: number;
+  driverEmail: string;
+  brokerId: number;
+  setBrokerOrderId: (brokerOrderId: number) => void;
+  setBrokerId: (brokerId: number) => void;
+  setDriverEmail: (driverEmail: string) => void;
+}
+
+export const useGenerateInvoice = create<GenerateInvoiceProps>((set) => ({
+  open: false,
+  setOpen: (open) => set({ open }),
+  brokerOrderId: 0,
+  brokerId: 0,
+  setBrokerId: (brokerId) => set({ brokerId }),
+  setBrokerOrderId: (brokerOrderId) => set({ brokerOrderId }),
+  driverEmail: "",
+  setDriverEmail: (driverEmail) => set({ driverEmail }),
+}));
+
 interface PopUpProps extends ModalProp {
   data: {
     message: string;

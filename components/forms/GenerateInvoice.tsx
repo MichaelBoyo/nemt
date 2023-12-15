@@ -1,37 +1,63 @@
 "use client";
-import { useAssignDriver } from "~/zustand";
+import { useGenerateInvoice } from "~/zustand";
 import Modal from "../Modal";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { Submit } from "../Submit";
-import { assignTripToDriver } from "~/lib/drivers/action";
 import { useSearchParams } from "next/navigation";
+import { generateInvoice } from "~/lib/invoice/action";
 export const GenerateInvoice = () => {
   const searchParams = useSearchParams();
-  const { open, setOpen, brokerOrderId, batch } = useAssignDriver();
-  const [formState, formAction] = useFormState(assignTripToDriver, {
-    message: undefined,
-    data: undefined,
+  const {
+    open,
+    setOpen,
+     brokerOrderId,
+     driverEmail
+  } = useGenerateInvoice();
+  const [formState, formAction] = useFormState(generateInvoice, {
+    message: "",
+    data: {
+      message: "",
+    },
   });
   useEffect(() => {
     if (formState?.data?.message) {
       setOpen(false);
     }
   }, [formState, setOpen]);
-  if (open) return null;
 
   return (
     <Modal open={open} close={() => setOpen(false)}>
       <form action={formAction} className="flex flex-col gap-2 w-full ">
-        <label className="font-semibold">Select Driver </label>
+        <label className="font-semibold">Loaded Miles </label>
         <input hidden name="brokerOrderId" value={brokerOrderId} />
+        <input hidden name="driverEmail" value={driverEmail} />
         <input
           hidden
           name="brokerId"
           value={Number(searchParams.get("id")) || 0}
         />
-        <input hidden name="containerId" value={batch} />
-        <input className="input" name="containerId" value={batch} />
+     
+        <input
+          className="input input-bordered"
+          name="loadedMiles"
+          placeholder={"0"}
+          type="number"
+        />
+        <label className="font-semibold">UnLoaded Miles </label>
+        <input
+          className="input input-bordered"
+          name="unLoadedMiles"
+          placeholder={"0"}
+          type="number"
+        />
+        <label className="font-semibold">Cost Override </label>
+        <input
+          className="input input-bordered"
+          name="cost Override"
+          placeholder={"0"}
+          type="number"
+        />
 
         {formState.message && (
           <div
