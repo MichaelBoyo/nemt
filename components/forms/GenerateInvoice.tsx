@@ -8,18 +8,8 @@ import { useSearchParams } from "next/navigation";
 import { generateInvoice } from "~/lib/invoice/action";
 export const GenerateInvoice = () => {
   const searchParams = useSearchParams();
-  const {
-    open,
-    setOpen,
-     brokerOrderId,
-     driverEmail
-  } = useGenerateInvoice();
-  const [formState, formAction] = useFormState(generateInvoice, {
-    message: "",
-    data: {
-      message: "",
-    },
-  });
+  const { open, setOpen, brokerOrderId, driverEmail } = useGenerateInvoice();
+  const [formState, formAction] = useFormState(generateInvoice, {} as any);
   useEffect(() => {
     if (formState?.data?.message) {
       setOpen(false);
@@ -37,7 +27,7 @@ export const GenerateInvoice = () => {
           name="brokerId"
           value={Number(searchParams.get("id")) || 0}
         />
-     
+
         <input
           className="input input-bordered"
           name="loadedMiles"
